@@ -34,8 +34,19 @@ class App extends Component {
    }
 
    deleteTodo(index) {
-    const newTodos = this.state.todos.filter(index,todo) => (todo[index].isDeleted ===false));
-    this.setState({ todos: newTodos });
+    const newTodos = this.state.todos.map((todo, i) => {
+      if (index === i) {
+        todo.isDeleted = true;
+
+        return todo;
+      }
+
+      return todo;
+    })
+
+    const filterdTodos = newTodos.filter(todo => todo.isDeleted === false);
+
+    this.setState({ todos: filterdTodos });
   }
 
   render() {
@@ -43,8 +54,14 @@ class App extends Component {
       <div className="App">
       <ul>
       { this.state.todos.map( (todo, index) =>
-        <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } />
-        <ToDo key={ index } description={ todo.description } isDeleted={ todo.isDeleted } deleteTodo={ this.deleteTodo } />
+        <ToDo
+          key={ index }
+          description={ todo.description }
+          isCompleted={ todo.isCompleted }
+          toggleComplete={ () => this.toggleComplete(index) }
+          isDeleted={ todo.isDeleted }
+          deleteTodo={ () => this.deleteTodo(index)}
+        />
       )}
       </ul>
       <form onSubmit={ (e) => this.handleSubmit(e) }>
