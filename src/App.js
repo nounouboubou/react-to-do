@@ -7,7 +7,7 @@ class App extends Component {
      super(props);
      this.state = {
        todos: [
-         { description: 'Walk the cat', isCompleted: true , isDeleted: true},
+         { description: 'Walk the cat', isCompleted: true , isDeleted: false},
          { description: 'Throw the dishes away', isCompleted: false,isDeleted: false },
          { description: 'Buy new dishes', isCompleted: false , isDeleted: false}
        ],
